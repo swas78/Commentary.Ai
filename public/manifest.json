@@ -1,0 +1,17 @@
+{
+  "name": "Live Cricket Commentary AI",
+  "short_name": "Commenta.AI",
+  "description": "Real-time AI cricket commentary with 3D avatars and multi-device sync.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#060913",
+  "theme_color": "#06b6d4",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}

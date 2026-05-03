@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commenta.AI - Offline</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background-color: #060913;
+      color: white;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .loader {
+      border: 4px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      border-top: 4px solid #00d4ff;
+      width: 50px;
+      height: 50px;
+      -webkit-animation: spin 1s linear infinite; /* Safari */
+      animation: spin 1s linear infinite;
+      margin-bottom: 2rem;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    h1 {
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+      color: #00d4ff;
+    }
+    p {
+      color: rgba(255, 255, 255, 0.5);
+      max-width: 300px;
+      line-height: 1.5;
+    }
+    .btn {
+      margin-top: 2rem;
+      padding: 12px 24px;
+      background-color: rgba(0, 212, 255, 0.1);
+      border: 1px solid #00d4ff;
+      color: #00d4ff;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn:hover {
+      background-color: rgba(0, 212, 255, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="loader"></div>
+  <h1>OFFLINE</h1>
+  <p>You have lost connection to the stadium. We are waiting for your network to return.</p>
+  <button class="btn" onclick="window.location.reload()">Retry Connection</button>
+</body>
+</html>

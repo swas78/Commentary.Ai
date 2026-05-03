@@ -1,0 +1,469 @@
+/* ============================================================
+   CRICKET COMMENTARY AI — GLASSMORPHISM DESIGN SYSTEM
+   ============================================================ */
+
+/* ── Google Fonts ────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+/* ── Tailwind v4 ─────────────────────────────────────────────── */
+@import "tailwindcss";
+
+/* ============================================================
+   1. CSS CUSTOM PROPERTIES (Design Tokens)
+   ============================================================ */
+:root {
+  /* ── Brand Colors (Navy Scale) ───────────────────────────── */
+  --color-brand-900: #0a0e1a;
+  --color-brand-800: #0f1629;
+  --color-brand-700: #151d38;
+  --color-brand-600: #1b2547;
+  --color-brand-500: #212d56;
+  --color-brand-400: #2a3a6e;
+  --color-brand-300: #3a4f8a;
+  --color-brand-200: #5a70a8;
+  --color-brand-100: #8494c4;
+
+  /* ── Accent Colors ───────────────────────────────────────── */
+  --color-accent-primary: #00d4ff;
+  --color-accent-secondary: #ff006e;
+  --color-accent-tertiary: #00ff88;
+  --color-accent-warning: #ffb703;
+  --color-accent-success: #06ffa5;
+
+  /* ── Glow Colors (RGBA) ──────────────────────────────────── */
+  --glow-cyan: rgba(0, 212, 255, 0.4);
+  --glow-cyan-soft: rgba(0, 212, 255, 0.15);
+  --glow-cyan-intense: rgba(0, 212, 255, 0.6);
+  --glow-pink: rgba(255, 0, 110, 0.4);
+  --glow-pink-soft: rgba(255, 0, 110, 0.15);
+  --glow-pink-intense: rgba(255, 0, 110, 0.6);
+  --glow-green: rgba(0, 255, 136, 0.4);
+  --glow-green-soft: rgba(0, 255, 136, 0.15);
+  --glow-green-intense: rgba(0, 255, 136, 0.6);
+  --glow-warning: rgba(255, 183, 3, 0.4);
+  --glow-warning-soft: rgba(255, 183, 3, 0.15);
+  --glow-success: rgba(6, 255, 165, 0.4);
+  --glow-success-soft: rgba(6, 255, 165, 0.15);
+
+  /* ── Glass Variants ──────────────────────────────────────── */
+  --glass-light: rgba(255, 255, 255, 0.05);
+  --glass-lighter: rgba(255, 255, 255, 0.08);
+  --glass-dark: rgba(10, 14, 26, 0.6);
+  --glass-darker: rgba(10, 14, 26, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-hover: rgba(255, 255, 255, 0.15);
+  --glass-blur: 12px;
+  --glass-blur-heavy: 24px;
+  --glass-blur-light: 6px;
+
+  /* ── Animation Duration Tokens ───────────────────────────── */
+  --duration-instant: 100ms;
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-moderate: 350ms;
+  --duration-slow: 500ms;
+  --duration-slower: 1000ms;
+  --duration-gradient: 10s;
+
+  /* ── Easing Function Tokens ──────────────────────────────── */
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-in-quart: cubic-bezier(0.5, 0, 0.75, 0);
+
+  /* ── Typography Scale ────────────────────────────────────── */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+
+  --leading-tight: 1.15;
+  --leading-snug: 1.3;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.65;
+
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.1em;
+
+  /* ── Spacing Scale ───────────────────────────────────────── */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* ── Z-Index Scale ───────────────────────────────────────── */
+  --z-base: 1;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-overlay: 30;
+  --z-modal: 40;
+  --z-toast: 50;
+}
+
+/* ============================================================
+   2. GLOBAL RESET & BASE STYLES
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: #e2e8f0;
+  background: var(--color-brand-900);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ── Animated Gradient Background ──────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: linear-gradient(
+    135deg,
+    var(--color-brand-900) 0%,
+    #1a0a2e 25%,
+    #16082b 50%,
+    #1a0a2e 75%,
+    var(--color-brand-900) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradientShift var(--duration-gradient) ease infinite;
+}
+
+/* ── Subtle Animated Grid Overlay ──────────────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ============================================================
+   3. TYPOGRAPHY CLASSES
+   ============================================================ */
+.heading-1 {
+  font-size: var(--text-6xl);
+  font-weight: 800;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+
+.heading-2 {
+  font-size: var(--text-5xl);
+  font-weight: 700;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+
+.heading-3 {
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  line-height: var(--leading-snug);
+}
+
+.heading-4 {
+  font-size: var(--text-3xl);
+  font-weight: 600;
+  line-height: var(--leading-snug);
+}
+
+.heading-5 {
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  line-height: var(--leading-snug);
+}
+
+.heading-6 {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  line-height: var(--leading-normal);
+}
+
+.body-lg {
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+}
+
+.body-base {
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+}
+
+.body-sm {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+.caption {
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* ============================================================
+   4. GLASSMORPHISM UTILITY CLASSES
+   ============================================================ */
+
+/* ── Base Glass ────────────────────────────────────────────── */
+.glass-base {
+  background: var(--glass-light);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+.glass-base:hover {
+  background: var(--glass-lighter);
+  border-color: var(--glass-border-hover);
+}
+
+/* ── Glass with Glow ───────────────────────────────────────── */
+.glass-glow {
+  background: var(--glass-light);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  border-radius: var(--radius-lg);
+  box-shadow:
+    0 0 15px var(--glow-cyan-soft),
+    0 0 30px rgba(0, 212, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+.glass-glow:hover {
+  border-color: rgba(0, 212, 255, 0.3);
+  box-shadow:
+    0 0 20px var(--glow-cyan),
+    0 0 40px rgba(0, 212, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* ── Dark Glass ────────────────────────────────────────────── */
+.glass-dark {
+  background: var(--glass-dark);
+  backdrop-filter: blur(var(--glass-blur-heavy));
+  -webkit-backdrop-filter: blur(var(--glass-blur-heavy));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+.glass-dark:hover {
+  background: var(--glass-darker);
+  border-color: var(--glass-border-hover);
+}
+
+/* ── Frosted Glass ─────────────────────────────────────────── */
+.glass-frosted {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(var(--glass-blur-heavy)) saturate(1.8);
+  -webkit-backdrop-filter: blur(var(--glass-blur-heavy)) saturate(1.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 4px 24px rgba(0, 0, 0, 0.2);
+  transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+.glass-frosted:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ============================================================
+   5. ANIMATION UTILITIES
+   ============================================================ */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes neon-flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.8; }
+  94% { opacity: 1; }
+  96% { opacity: 0.9; }
+  97% { opacity: 1; }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+/* ============================================================
+   6. SCROLLBAR STYLES
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================================
+   7. SELECTION STYLES
+   ============================================================ */
+::selection {
+  background: rgba(0, 212, 255, 0.3);
+  color: #ffffff;
+}
+
+/* ============================================================
+   8. FOCUS STYLES
+   ============================================================ */
+:focus-visible {
+  outline: 2px solid var(--color-accent-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ============================================================
+   9. UTILITY HELPERS
+   ============================================================ */
+.text-gradient-cyan {
+  background: linear-gradient(135deg, var(--color-accent-primary), #0099cc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-pink {
+  background: linear-gradient(135deg, var(--color-accent-secondary), #cc0058);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-green {
+  background: linear-gradient(135deg, var(--color-accent-tertiary), #00cc6a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-multi {
+  background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary), var(--color-accent-tertiary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.border-glow-cyan {
+  border-color: rgba(0, 212, 255, 0.3);
+  box-shadow: 0 0 10px var(--glow-cyan-soft);
+}
+
+.border-glow-pink {
+  border-color: rgba(255, 0, 110, 0.3);
+  box-shadow: 0 0 10px var(--glow-pink-soft);
+}
+
+.border-glow-green {
+  border-color: rgba(0, 255, 136, 0.3);
+  box-shadow: 0 0 10px var(--glow-green-soft);
+}
